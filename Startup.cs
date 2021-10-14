@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DotNetCoreSqlDb.Models;
+using Microsoft.Data.SqlClient;
 
 namespace DotNetCoreSqlDb
 {
@@ -28,8 +29,20 @@ namespace DotNetCoreSqlDb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Zadania 3 i 4
             services.AddDbContext<MyDatabaseContext>(options =>
-                    options.UseSqlite("Data Source=localdatabase.db"));
+                options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+
+            ////Zadanie 5
+            //services.AddDbContext<MyDatabaseContext>(options =>
+            //{
+            //    SqlAuthenticationProvider.SetProvider(
+            //        SqlAuthenticationMethod.ActiveDirectoryDeviceCodeFlow,
+            //        new CustomAzureSQLAuthProvider());
+            //    var sqlConnection = new SqlConnection(Configuration.GetConnectionString("MyDbConnection"));
+            //    options.UseSqlServer(sqlConnection);
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
