@@ -30,11 +30,12 @@ namespace DotNetCoreSqlDb
         {
             services.AddControllersWithViews();
 
-            // Zadania 3 i 4
+            // <Zadania 3 i 4>
             services.AddDbContext<MyDatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
-
-            ////Zadanie 5
+            // </Zadania 3 i 4>
+            
+            ////<Zadanie 5>
             //services.AddDbContext<MyDatabaseContext>(options =>
             //{
             //    SqlAuthenticationProvider.SetProvider(
@@ -43,6 +44,7 @@ namespace DotNetCoreSqlDb
             //    var sqlConnection = new SqlConnection(Configuration.GetConnectionString("MyDbConnection"));
             //    options.UseSqlServer(sqlConnection);
             //});
+            ////</Zadanie 5>
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
